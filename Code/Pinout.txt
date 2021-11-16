@@ -1,0 +1,13 @@
+Red LED: 9;
+Green LED 6;
+Blue LED: 5;
+SW: 10;
+DT: 2;
+CLK: 3;
+Row 1: 21;
+Row 2: 20;
+Row 3: 19;
+Row 4: 18;
+Column 1: 15;
+Column 2: 14;
+Column 3: 16;
