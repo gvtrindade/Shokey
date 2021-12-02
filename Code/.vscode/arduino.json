@@ -1,6 +1,0 @@
-{
-    "board": "arduino:avr:leonardo",
-    "programmer": "arduino:avrispmkii",
-    "port": "COM7",
-    "sketch": "Keypad\\Keypad.ino"
-}

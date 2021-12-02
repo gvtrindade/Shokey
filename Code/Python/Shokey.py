@@ -1,32 +1,27 @@
-import sys
-import subprocess
 import os
 import time
-import pynput
-import serial.tools.list_ports  # Imported from pyserial
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
+import serial
 
-# Start keyboard and mouse controllers, key and button classes
-KEYBOARD = pynput.keyboard.Controller()
-MOUSE = pynput.mouse.Controller()
-KBKEY = pynput.keyboard.Key
-MSBUTTON = pynput.mouse.Button
 
 # Get shortcut list from file
 shortcuts = {}
-currentDirectory = os.getcwd() + '\Code\shortcuts.txt'
+
 def set_shortcuts():
-    file = open(currentDirectory, 'rt')
+    file = open('./assets/shortcuts.txt', 'rt')
     for line in file:
         if line.strip():
             key, val = line.strip().split(';')
             shortcuts[key.strip()] = val.strip()
 
 
+###############
+###############
+import serial.tools.list_ports  # Imported from pyserial
+
 # Define to which port the keypad is connected
 VENDORID = 9026  # converted from hexadecimal: 0x2342
 PRODUCTID = 32825  # converted from hexadecimal:0x8039
+
 
 def ports_in_use():
     return serial.tools.list_ports.comports()
@@ -46,14 +41,16 @@ def find_used_port():
     return False
 
 
-# Establish serial connection between the arduino and the app
-def establish_connection(port):
-    return serial.Serial(port, 9600)
+###############
+###############
+import pynput
+import subprocess
 
-
-def send_serial_msg(serialcomm, msg):
-    serialcomm.write(msg.encode())
-
+# Start keyboard and mouse controllers, key and button classes
+KEYBOARD = pynput.keyboard.Controller()
+MOUSE = pynput.mouse.Controller()
+KBKEY = pynput.keyboard.Key
+MSBUTTON = pynput.mouse.Button
 
 # Handle the type of command to be executed
 def key_command(pressedKey):
@@ -85,22 +82,26 @@ def link_command(linkSent):
 
 
 def scroll_command(valuesSent):
-    print(valuesSent)
     MOUSE.scroll(int(valuesSent[0]), int(valuesSent[1]))
+
+
+###############
+###############
+# Establish serial connection between the arduino and the app
+def establish_connection(port):
+    return serial.Serial(port, 9600)
+
+
+def send_serial_msg(serialcomm, msg):
+    serialcomm.write(msg.encode())
 
 
 def communication_handler(serialcomm):
     set_shortcuts()
-    var = serialcomm.readline().decode('ascii').strip()
-    shortcut = shortcuts.get(var, -1)
+    message_sent = serialcomm.readline().decode('ascii').strip()
+    shortcut = shortcuts.get(message_sent, -1)
 
-    if (var[0] == '0'):
-        print('Closing app...')
-        send_serial_msg(serialcomm, 'O')
-        serialcomm.close()
-        sys.exit()
-
-    elif (shortcut != -1):
+    if (shortcut != -1):
 
         if (shortcut[:3] == 'key'):
             key_command(shortcut[4:])
@@ -118,18 +119,19 @@ def communication_handler(serialcomm):
         if (shortcut[:6] == 'scroll'):
             scrollDirections = shortcut[7:].split(',')
             scroll_command(scrollDirections)
-    del var
+    del message_sent
 
 
-#Searching for the arduino and updating the communication 
+# Searching for the arduino and updating the communication
 sleep_amount = 0.8
 
 while (not find_used_port()):
     find_used_port()
     time.sleep(sleep_amount)
 
-def update_communication():
 
+def update_communication():
+    global serialcomm
     serialcomm = establish_connection(find_used_port())
     send_serial_msg(serialcomm, 'I')
 
@@ -137,15 +139,38 @@ def update_communication():
         try:
             communication_handler(serialcomm)
 
-        except SystemExit:
-            break
-
         except:
-            print(sys.exc_info()[0])
             find_used_port()
             if(find_used_port()):
                 update_communication()
             time.sleep(sleep_amount)
 
+
+
+###############
+###############
+from infi.systray import SysTrayIcon
+import subprocess
+
+program_name = "notepad.exe"
+shortcuts_file = "./assets/shortcuts.txt"
+about_file = "./assets/About.txt"
+
+def open_shortcuts(systray):
+    subprocess.Popen([program_name, shortcuts_file])
+
+def open_about(systray):
+    subprocess.Popen([program_name, about_file])
+
+def exit_app(systray):
+    send_serial_msg(serialcomm, 'O')
+    serialcomm.close()
+    os._exit(1)
+
+menu_options = (("Shortcuts", None, open_shortcuts), ("About", None, open_about),)
+systray = SysTrayIcon("./assets/icon.ico" , "Shokey", menu_options, on_quit=exit_app)
+    
+
+systray.start()
 
 update_communication()

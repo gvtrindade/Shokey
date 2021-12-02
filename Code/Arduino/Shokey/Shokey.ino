@@ -1,7 +1,7 @@
 /**
- * @file Keypad.ino
+ * @file Shokey.ino
  * @author Gabriel Trindade (github.com/gvtrindade)
- * @brief This is the arduino part of the code to the Keypad, 
+ * @brief This is the arduino part of the code, 
  * here the button inputs are captured and sent via serial
  * communication to the python part of the code.
  * @version 1.0
@@ -15,19 +15,16 @@
 #include <Bounce2.h>
 #include <Keyboard.h>
 
-
 //State keys matrix, pins and setup keypad
 const byte ROWS = 4;
 const byte COLS = 3;
 char keys[COLS][ROWS] = {
-  {'X','7','4','1'},
-  {'*','8','5','2'},
-  {'0','9','6','3'}
-};
+    {'X', '7', '4', '1'},
+    {'*', '8', '5', '2'},
+    {'0', '9', '6', '3'}};
 byte rowPins[ROWS] = {18, 19, 20, 21};
 byte colPins[COLS] = {15, 14, 16};
-Keypad keypad = Keypad( makeKeymap(keys), colPins, rowPins, COLS, ROWS);
-
+Keypad keypad = Keypad(makeKeymap(keys), colPins, rowPins, COLS, ROWS);
 
 //Set led pins, led brightness and current selected color
 const int redL = 9;
@@ -36,28 +33,26 @@ const int blueL = 5;
 const int brightness = 5;
 char currColor;
 
-
 //Set encoder pins, setup encoder and its button, the debounce interval,
 // encoder's old position rotation time limit and delay
 int SW = 10;
 int DT = 2;
 int CLK = 3;
-Encoder volumeKnob(DT,CLK);
+Encoder volumeKnob(DT, CLK);
 Bounce2::Button encoderButton = Bounce2::Button();
 const int debounceInterval = 5;
 long oldPosition = -999;
 const int rotationDelay = 80;
 
-
-//Define character to be recieved from the macro script 
+//Define character to be recieved from the macro script
 //and whether or not it's running
 char incomingString;
 bool scriptRunning = false;
 
-
 //Function to change shown led color: red, green, blue or white
-void changeColor(){
-  
+void changeColor()
+{
+
   switch (currColor)
   {
   case 'W':
@@ -80,7 +75,7 @@ void changeColor(){
     analogWrite(blueL, brightness);
     currColor = 'B';
     break;
-  
+
   case 'B':
     analogWrite(redL, brightness);
     analogWrite(greenL, brightness);
@@ -88,73 +83,86 @@ void changeColor(){
     currColor = 'W';
     break;
   }
-
 }
 
 // Test communication between keypad and the macro script,
 // if the script is on, it returns true, else, false
-void testCommunication(){
+void testCommunication()
+{
   incomingString = Serial.read();
-  switch (incomingString){
+  switch (incomingString)
+  {
   case 'I':
     scriptRunning = true;
     break;
   case 'O':
     scriptRunning = false;
     break;
-  }  
+  }
 }
 
-void normalKeyPressing(char pressedKey){
+void normalKeyPressing(char pressedKey)
+{
   //Press key based on assigned key on "keys" matrix
-  if (pressedKey != NO_KEY){
-    switch(pressedKey){
+  if (pressedKey != NO_KEY)
+  {
+    switch (pressedKey)
+    {
     case '*':
       changeColor();
       break;
     default:
-      Keyboard.press(pressedKey);
-      Keyboard.release(pressedKey);
+        Keyboard.press(pressedKey);
+        Keyboard.release(pressedKey);
       break;
     }
   }
 }
 
-void programKeyPressing(char pressedKey){
+void programKeyPressing(char pressedKey)
+{
   //Check if a key is pressed, sending its value to the serial port
   //Depending on the current led color, a different value will be sent,
   //effectively creating a profile for each color.
   //eg. '1R' = number 1 in the red profile
   String keyCode = String(pressedKey) + String(currColor);
-  if (pressedKey != NO_KEY){
-    switch(pressedKey){
-      case '*':
-        changeColor();
-        break;
-      default:
-        Serial.println(keyCode);
-        break;
+  if (pressedKey != NO_KEY)
+  {
+    switch (pressedKey)
+    {
+    case '*':
+      changeColor();
+      break;
+    default:
+      Serial.println(keyCode);
+      break;
     }
-  } 
-
+  }
 }
 
-void encoderButtonPressing(){
+void encoderButtonPressing()
+{
   // Check if the encoder button is pressed, send its value in the same format as the number keys
-  if(encoderButton.update() && encoderButton.isPressed()){
+  if (encoderButton.update() && encoderButton.isPressed())
+  {
     String buttonCode = "E" + String(currColor);
     Serial.println(buttonCode);
   }
 }
 
-void encoderRotating(){
+void encoderRotating()
+{
   //Check encoder rotation, sending VU when the encoder is rotated clockwise, and VD, when counterclockwise
   long newPosition = volumeKnob.read();
-  if(newPosition != oldPosition){
-    if((newPosition - oldPosition) > 0) {
+  if (newPosition != oldPosition)
+  {
+    if ((newPosition - oldPosition) > 0)
+    {
       String volumeUpCode = "VU" + String(currColor);
       Serial.println(volumeUpCode);
-    } else {
+    }
+    else
+    {
       String volumeDownCode = "VD" + String(currColor);
       Serial.println(volumeDownCode);
     }
@@ -163,7 +171,8 @@ void encoderRotating(){
   }
 }
 
-void setup() {
+void setup()
+{
   //Begin serial communication
   Serial.begin(9600);
   Keyboard.begin();
@@ -180,20 +189,21 @@ void setup() {
   encoderButton.attach(SW, INPUT);
   encoderButton.interval(debounceInterval);
   encoderButton.setPressedState(LOW);
-
 }
 
-void loop() {
+void loop()
+{
   //Call communication test, key pressing and encoder rotating functions
   testCommunication();
-  switch(scriptRunning){
-    case true:
-      programKeyPressing(keypad.getKey());
-      break;
-    case false:
-      normalKeyPressing(keypad.getKey());
-      break;
+  switch (scriptRunning)
+  {
+  case true:
+    programKeyPressing(keypad.getKey());
+    break;
+  case false:
+    normalKeyPressing(keypad.getKey());
+    break;
   }
   encoderButtonPressing();
-  encoderRotating(); 
+  encoderRotating();
 }

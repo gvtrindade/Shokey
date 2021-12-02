@@ -1,0 +1,22 @@
+Shokey
+
+An Arduino based Shortcut Keypad and Python app.
+
+Created by: github.com/gvtrindade/Shokey
+Version: v1.0
+Date: 12/02/2021
+
+Python: v3.9
+Libs:
+  pynput
+  pyserial
+  SysTrayIcon
+
+Arduino: v1.8.15
+Libs:
+  Bounce2
+  Encoder
+  Keyboard
+  Keypad
+
+Icons made by Freepik from flaticon.com
