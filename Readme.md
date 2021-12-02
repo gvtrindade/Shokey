@@ -3,9 +3,9 @@
 An Arduino based Shortcut Keypad and Python app.
 
 - [Arduino](#arduino)
-  - [Features](#arduino)
-  - [Assembling the hardware](#arduino)
-  - [Flashing the software](#arduino)
+  - [Features](#features)
+  - [Assembling the hardware](#assemling-the-hardware)
+  - [Flashing the software](#flashing-the-software)
 - [Python](#python)
   - [Features](#features)
   - [Installation](#installation)
