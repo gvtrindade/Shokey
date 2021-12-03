@@ -21,13 +21,13 @@ The hardware part was made using an Arduino Pro Micro, Cherry MX Brown Switches 
 ### Features
 
 - Can be used as a numeric keyboard in any device while not running the app
-- Has cool a RGB LED, that changes color
+- Has a cool RGB LED, that changes color
 
 ### Assembling the hardware
 
 1. Download and print the shell, keycaps and rotary encoder knob
 
-2. Place all switches and srew in the rotary encoder in the top part of the shell
+2. Place all switches and screw in the rotary encoder in the top part of the shell
 
 3. Solder the switches, rotary encoder and RGB LED to their respective pins in the Arduino, following the Wiring Diagram
 
@@ -73,6 +73,19 @@ The app is a Windows System Tray app built with Infi's Systray and is used to se
 - It can be double clicked to open the shortcuts.txt file
 - When altered, the shortcut will update automatically after the first press, not needing to reset the app
 
+#### Layers
+
+The Shokey has 4 layers, each based on the RGB LED color (red, green, blue and white). The **shortcuts.txt** file was writen in order to facilitate the reading and editing of each shortcut. 
+
+The numbers go from 1 to 9, similar to a numeric keyboard. The top most keys are the `*` and `0`, from left to right.
+
+The `*` key is used to change between layers.
+
+The rotary encoder is represented by three variables, `VD` (volume down), `VU` (volume up) and `E` (encoder button)
+
+Eg.: `1R; key.a` can be interpreted as the first key of the red layer, which will press the key `a` on the keyboard.
+
+
 #### Shortcut syntax
 
 - To press a key: key.*key*
@@ -84,27 +97,30 @@ The app is a Windows System Tray app built with Infi's Systray and is used to se
 ##### Example
 
     1R; key.a
-    2R; combo.alt+f4
-    3R; txt.Hello World
-    4R; link.C:\Windows\System32\calc.exe
-    5R; scroll.0,1
+    2G; combo.alt+f4
+    3B; txt.Hello World
+    4W; link.C:\Windows\System32\calc.exe
+    ER; key.media_play_pause
+    VUG; scroll.0,-1
+    VDG; scroll.0,1
 
 #### Custom keys
 - media_play_pause, media_volume_up, media_volume_down
-- f2, f5, space, esc, delete, home, end
+- f2, f5, space, escape, delete, home, end
 - ctrl, alt, shift, cmd (windows key)
 - up, down, left, right
 - [More custom keys](https://pynput.readthedocs.io/en/latest/keyboard.html#pynput.keyboard.Key)
 
 ## References
 
-- https://www.instructables.com/Programmable-Macropad-V2/
-- http://liveelectronics.musinou.net/MIDIdeviceName.php
-- https://www.arduino.cc/reference/en/libraries/bounce2/
-- https://www.arduino.cc/reference/en/libraries/encoder/
-- https://www.arduino.cc/reference/en/libraries/keyboard/
-- https://www.arduino.cc/reference/en/libraries/keypad/
-- https://pypi.org/project/pynput/
-- https://pypi.org/project/pyserial/
-- https://github.com/Infinidat/infi.systray
+- [Programmable Macropad v2 - 
+Tiny Boat Productions](https://www.instructables.com/Programmable-Macropad-V2/)
+- [MIDI device name - musinou](http://liveelectronics.musinou.net/MIDIdeviceName.php)
+- [Bounce2](https://www.arduino.cc/reference/en/libraries/bounce2/)
+- [Encoder](https://www.arduino.cc/reference/en/libraries/encoder/)
+- [Keyboard](https://www.arduino.cc/reference/en/libraries/keyboard/)
+- [Keypad](https://www.arduino.cc/reference/en/libraries/keypad/)
+- [Pynput](https://pypi.org/project/pynput/)
+- [Pyserial](https://pypi.org/project/pyserial/)
+- [Systray](https://github.com/Infinidat/infi.systray)
 - Icons made by Freepik from flaticon.com
