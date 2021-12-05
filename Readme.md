@@ -5,7 +5,7 @@ An Arduino based Shortcut Keypad and Python app.
 - [Arduino](#arduino)
   - [Features](#features)
   - [Assembling the hardware](#assemling-the-hardware)
-  - [Flashing the software](#flashing-the-software)
+  - [Flashing the firmware](#flashing-the-firmware)
 - [Python](#python)
   - [Features](#features)
   - [Installation](#installation)
@@ -29,25 +29,31 @@ The hardware part was made using an Arduino Pro Micro, Cherry MX Brown Switches 
 
 2. Place all switches and screw in the rotary encoder in the top part of the shell
 
-3. Solder the switches, rotary encoder and RGB LED to their respective pins in the Arduino, following the Wiring Diagram
+3. Solder the switches, rotary encoder and RGB LED to their respective pins in the Arduino, following the [wiring diagram](https://github.com/gvtrindade/Shokey/Code/Arduino/Wiring_Diagram.jpg)
 
-4. Making sure to have no solder bridges between the pins, connect the Arduino to the PC and [flash the software](#flashing-the-software)
+4. Making sure to have no solder bridges between the board pins, connect the Arduino to the PC and [flash the firmware](#flashing-the-firmware)
 
-5. While being extremely careful, close the shell, screw the screws and glue the rubber feet
+5. While being extremely careful, close the shell, screw it and glue the rubber feet
 
-### Flashing the software
+### Flashing the firmware
 
 1. Make sure you have [Arduino IDE](https://www.arduino.cc/en/software) installed
 
 2. [Download](https://github.com/gvtrindade/Shokey/releases) the **Arduino.zip** file and copy the "Arduino" folder to your "Documents" folder
 
-3. Open Shokey/Shokey.ino
+3. Make sure that the 
+[Bounce2](https://www.arduino.cc/reference/en/libraries/bounce2/), 
+[Encoder](https://www.arduino.cc/reference/en/libraries/encoder/), 
+[Keyboard](https://www.arduino.cc/reference/en/libraries/keyboard/) and
+[Keypad](https://www.arduino.cc/reference/en/libraries/keypad/) libraries are installed
 
-4. Go to Tools/Board/gvtrindade-avr and select "Arduino Leonardo Shokey"
+4. Open Shokey/Shokey.ino
 
-5. Go to Tools/Ports and select the port in which the board is connected
+5. Go to Tools/Board/gvtrindade-avr and select "Arduino Leonardo Shokey"
 
-6. Press the Upload
+6. Go to Tools/Ports and select the port in which the board is connected
+
+7. Press the Upload
 
 ## Python
 
@@ -81,9 +87,9 @@ The numbers go from 1 to 9, similar to a numeric keyboard. The top most keys are
 
 The `*` key is used to change between layers.
 
-The rotary encoder is represented by three variables, `VD` (volume down), `VU` (volume up) and `E` (encoder button)
+The rotary encoder is represented by three variables, `VU` (Volume Up), `VD` (Volume Down) and `E` (Encoder button)
 
-Eg.: `1R; key.a` can be interpreted as the first key of the red layer, which will press the key `a` on the keyboard.
+Eg.: `1R; key.a` is the number one key of the red layer, which will press the key `a` on the keyboard.
 
 
 #### Shortcut syntax
