@@ -1,36 +1,34 @@
-<span style="float: right; display: flex;">
+# ![Shokey icon](./Images/Shokey_Icon.png) Shokey 
 
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-
-</span>
-
-# ![Shokey icon](./Images/Shokey_Icon.png) Shokey 
 
 An Arduino based Shortcut Keypad and Python app.
 
-<img src="./Images/Shokey_Physical.jpg" alt="Shokey layout in numeric keypad mode" style="display: block; margin: 0 auto" />
+<p align="center">
+  <img src="./Images/Shokey_Physical.jpg" alt="Shokey layout in numeric keypad mode" />
+</p>
+
 
 <br>
 
 <details>
 <summary>Table of Contents</summary>
 
-  - [Arduino](#arduino)
+  - [Arduino](#-arduino)
     - [Features](#features)
     - [Usage](#usage)
-    - [Bill of Materials](#bill-of-materials)
-    - [Assembling the Hardware](#assembling-the-harrdware)
-    - [Flashing the Software](#flashing-the-software)
-  - [Python](#python)
+    - [Bill of Materials](#materials)
+    - [Assembling the Hardware](#hardware)
+    - [Flashing the Software](#firmware)
+  - [Python](#-python)
     - [Features](#features-1)
     - [Installation](#installation)
     - [Usage](#usage-1)
-    - [Shokey Layout](#shokey-layout)
-    - [Shortcut Editing](#shortcut-editing)
+    - [Shokey Layout](#layout)
+    - [Shortcut Editing](#shortcuts)
     - [Custom Keys](#custom-keys)
-  - [References](#references)
+  - [References](#-references)
 </details>
 
 
@@ -45,12 +43,14 @@ The hardware was made using an Arduino Pro Micro, Cherry MX Brown Switches, and 
 
 ### Usage
 To use your Shokey as a numeric keypad, just connect it to your device (PC, Linux, Mac or Android) and start pressing the keys.
-<img src="./Images/Shokey_Numeric.png" alt="Shokey layout in numeric keypad mode" style="display: block; margin: 0 auto" />
+<p align="center">
+  <img src="./Images/Shokey_Numeric.png" alt="Shokey layout in numeric keypad mode" />
+</p>
 
 <details>
 <summary>
     🛒
-    <span id="bill-of-materials" style="font-size: 1.3em; font-weight: 500">Bill of materials</span>
+    <span id="materials" style="font-size: 1.3em; font-weight: 500">Bill of materials</span>
 </summary>
 <br>
 
@@ -67,7 +67,7 @@ To use your Shokey as a numeric keypad, just connect it to your device (PC, Linu
 <details>
 <summary>
     ⚙
-    <span id="assembling-the-hardware" style="font-size: 1.3em; font-weight: 500">Assembling the hardware</span>
+    <span id="hardware" style="font-size: 1.3em; font-weight: 500">Assembling the hardware</span>
 </summary>
 
 1. [Download](https://thangs.com/designer/gabrielsvtrindade/3d-model/Shokey-199656) and print the shell, keycaps and rotary encoder knob
@@ -85,18 +85,22 @@ To use your Shokey as a numeric keypad, just connect it to your device (PC, Linu
 <details>
 <summary>
     ⚡️
-    <span id="flashing-the-firmware" style="font-size: 1.3em; font-weight: 500">Flashing the firmware</span>
+    <span id="firmware" style="font-size: 1.3em; font-weight: 500">Flashing the firmware</span>
 </summary>
 
 1. Make sure you have <a target="_blank" href="https://www.arduino.cc/en/software">Arduino IDE</a> installed
 
 2. Go to "Sketch > Include Library > Manage Libraries"
 
-<img src="./Images/Arduino_Menu.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+<p align="center">
+  <img src="./Images/Arduino_Menu.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+</p>
 
 3. Search for and install the Bounce2, Encoder, Keyboard and Keypad libraries
 
-<img src="./Images/Arduino_Libs.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+<p align="center">
+  <img src="./Images/Arduino_Libs.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+</p>
 
 4. [Download](https://github.com/gvtrindade/Shokey/releases) and unzip the **Firmware.zip** file
 
@@ -106,13 +110,17 @@ To use your Shokey as a numeric keypad, just connect it to your device (PC, Linu
 
 7. Go to "Tools > Board > gvtrindade-avr" and select "Arduino Leonardo Shokey"
 
-<img src="./Images/Arduino_Board.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+<p align="center">
+  <img src="./Images/Arduino_Board.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+</p>
 
 8. Go to "Tools > Ports" and take note of the ports shown
 
 9. Connect your Shokey, reopen "Tools > Ports" and select the COM port that just appeared
 
-<img src="./Images/Arduino_COM.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+<p align="center">
+  <img src="./Images/Arduino_COM.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+</p>
 
 10. Go to "Sketch > Upload"
 
@@ -129,7 +137,9 @@ When the upload is complete, you can already use your Shokey as numeric keypad, 
 
 The app connects to a Shokey and is used for sending and editing the shortcuts
 
-<img src="./Images/Taskbar_Icon.jpg" alt="Right clicked task bar icon" style="display: block; margin: 0 auto;"/>
+<p align="center">
+  <img src="./Images/Taskbar_Icon.jpg" alt="Right clicked task bar icon" style="display: block; margin: 0 auto;"/>
+</p>
 
 ### Features
 
@@ -151,25 +161,30 @@ The app connects to a Shokey and is used for sending and editing the shortcuts
 - Double clicking it will open the "shortcuts.txt" file, allowing you to [edit your shortcuts](#shortcut-editing)
 - Right clicking it will open a menu to open the Shortcuts file, About file or quit the app:
 
-<img src="./Images/Taskbar_Right_Click.jpg" alt="Right clicked task bar icon" style="display: block; margin: 0 auto;"/>
+<p align="center">
+  <img src="./Images/Taskbar_Right_Click.jpg" alt="Right clicked task bar icon" style="display: block; margin: 0 auto;"/>
+</p>
 
 <details>
 <summary>
     🧮
-    <span id="shokey_layout" style="font-size: 1.3em; font-weight: 500">Shokey Layout</span>
+    <span id="layout" style="font-size: 1.3em; font-weight: 500">Shokey Layout</span>
 </summary>
 <br>
 
 Shokey has 4 layers (red, green, blue and white) and the `*` key is used to change between layers
 
-<img src="./Images/Shokey_Layers.gif" alt="Cycling through Shokeys layers" style="display: block; margin: 0 auto;"/>
+<p align="center">
+  <img src="./Images/Shokey_Layers.gif" alt="Cycling through Shokeys layers" style="display: block; margin: 0 auto;"/>
+</p>
 
 <br>
 
 The rotary encoder is represented by three variables, `VU` (Volume Up), `VD` (Volume Down) and `E` (Encoder button)
 
-<img src="./Images/Shokey_Encoder.gif" alt="Encoder rotating and clicking function" style="display: block; margin: 0 auto;"/>
-
+<p align="center">
+  <img src="./Images/Shokey_Encoder.gif" alt="Encoder rotating and clicking function" style="display: block; margin: 0 auto;"/>
+</p>
 
 <hr style="height: 0.1rem">
 
@@ -178,7 +193,7 @@ The rotary encoder is represented by three variables, `VU` (Volume Up), `VD` (Vo
 <details>
 <summary> 
     📝
-    <span id="shortcut-editing" style="font-size: 1.3em; font-weight: 500">Shortcut Editing</span> 
+    <span id="shortcuts" style="font-size: 1.3em; font-weight: 500">Shortcut Editing</span> 
 </summary>
 <br>
 
