@@ -1,1 +1,0 @@
-C:\Users\gabri\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\Scripts\pyinstaller.exe --onefile --noconsole --hidden-import=pkg_resources.py2_warn --icon=assets/icon.ico Shokey.py 

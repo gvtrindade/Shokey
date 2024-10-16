@@ -1,0 +1,46 @@
+{
+    "default": {
+        "name": "Default",
+        "colors": [
+            0, 0, 255
+        ],
+        "program": "",
+        "shortcuts": [
+            "key.media_play_pause",
+            "key.a",
+            "txt.Hello World",
+            "key.t",
+            "combo.ctrl+c",
+            "combo.ctrl+v",
+            "txt.Im number 6",
+            "key.p",
+            "key.media_volume_up",
+            "key.media_volume_down",
+            "txt.Im empty",
+            "scroll.0,-1",
+            "scroll.0,1"
+        ]
+    },
+    "new": {
+        "name": "New Profile",
+        "colors": [
+            150, 30, 255
+        ],
+        "program": "",
+        "shortcuts": [
+            "key.media_play_pause",
+            "key.a",
+            "txt.Hello World",
+            "key.t",
+            "combo.ctrl+c",
+            "combo.ctrl+v",
+            "txt.Im number 6",
+            "key.p",
+            "key.media_volume_up",
+            "key.media_volume_down",
+            "txt.Im empty",
+            "scroll.0,-1",
+            "scroll.0,1"
+        ]
+    }
+}

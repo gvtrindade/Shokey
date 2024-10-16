@@ -1,0 +1,4 @@
+pyserial==3.5
+pynput==1.7.6
+# infi.systray==0.1.12
+PyQt5==5.15.10
