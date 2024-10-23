@@ -1,4 +1,4 @@
-# ![Shokey icon](./Images/Shokey_Icon.png) Shokey 
+# ![Shokey icon](./assets/Shokey_Icon.png) Shokey 
 
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
@@ -6,7 +6,7 @@
 An Arduino based Shortcut Keypad and Python app.
 
 <p align="center">
-  <img src="./Images/Shokey_Physical.jpg" alt="Shokey layout in numeric keypad mode" />
+  <img src="./assets/Shokey_Physical.jpg" alt="Shokey layout in numeric keypad mode" />
 </p>
 
 
@@ -44,7 +44,7 @@ The hardware was made using an Arduino Pro Micro, Cherry MX Brown Switches, and 
 ### Usage
 To use your Shokey as a numeric keypad, just connect it to your device (PC, Linux, Mac or Android) and start pressing the keys.
 <p align="center">
-  <img src="./Images/Shokey_Numeric.png" alt="Shokey layout in numeric keypad mode" />
+  <img src="./assets/Shokey_Numeric.png" alt="Shokey layout in numeric keypad mode" />
 </p>
 
 <details>
@@ -74,7 +74,7 @@ To use your Shokey as a numeric keypad, just connect it to your device (PC, Linu
 
 2. Place all switches and screw in the rotary encoder to the top part of the shell
 
-3. Solder the switches, rotary encoder and RGB LED to their respective pins in the Arduino, following the [wiring diagram](./Images/Wiring_Diagram.png)
+3. Solder the switches, rotary encoder and RGB LED to their respective pins in the Arduino, following the [wiring diagram](./assets/Wiring_Diagram.png)
 
 4. Close the shell, screw it and glue the rubber feet
 
@@ -93,13 +93,13 @@ To use your Shokey as a numeric keypad, just connect it to your device (PC, Linu
 2. Go to "Sketch > Include Library > Manage Libraries"
 
 <p align="center">
-  <img src="./Images/Arduino_Menu.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+  <img src="./assets/Arduino_Menu.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
 </p>
 
 3. Search for and install the Bounce2, Encoder, Keyboard and Keypad libraries
 
 <p align="center">
-  <img src="./Images/Arduino_Libs.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+  <img src="./assets/Arduino_Libs.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
 </p>
 
 4. [Download](https://github.com/gvtrindade/Shokey/releases) and unzip the **Firmware.zip** file
@@ -111,7 +111,7 @@ To use your Shokey as a numeric keypad, just connect it to your device (PC, Linu
 7. Go to "Tools > Board > gvtrindade-avr" and select "Arduino Leonardo Shokey"
 
 <p align="center">
-  <img src="./Images/Arduino_Board.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+  <img src="./assets/Arduino_Board.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
 </p>
 
 8. Go to "Tools > Ports" and take note of the ports shown
@@ -119,7 +119,7 @@ To use your Shokey as a numeric keypad, just connect it to your device (PC, Linu
 9. Connect your Shokey, reopen "Tools > Ports" and select the COM port that just appeared
 
 <p align="center">
-  <img src="./Images/Arduino_COM.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
+  <img src="./assets/Arduino_COM.jpg" alt="Arduino library installation" style="display: block; margin: 0 auto; width: 50%"/>
 </p>
 
 10. Go to "Sketch > Upload"
@@ -138,7 +138,7 @@ When the upload is complete, you can already use your Shokey as numeric keypad, 
 The app connects to a Shokey and is used for sending and editing the shortcuts
 
 <p align="center">
-  <img src="./Images/Taskbar_Icon.jpg" alt="Right clicked task bar icon" style="display: block; margin: 0 auto;"/>
+  <img src="./assets/Taskbar_Icon.jpg" alt="Right clicked task bar icon" style="display: block; margin: 0 auto;"/>
 </p>
 
 ### Features
@@ -162,7 +162,7 @@ The app connects to a Shokey and is used for sending and editing the shortcuts
 - Right clicking it will open a menu to open the Shortcuts file, About file or quit the app:
 
 <p align="center">
-  <img src="./Images/Taskbar_Right_Click.jpg" alt="Right clicked task bar icon" style="display: block; margin: 0 auto;"/>
+  <img src="./assets/Taskbar_Right_Click.jpg" alt="Right clicked task bar icon" style="display: block; margin: 0 auto;"/>
 </p>
 
 <details>
@@ -175,7 +175,7 @@ The app connects to a Shokey and is used for sending and editing the shortcuts
 Shokey has 4 layers (red, green, blue and white) and the `*` key is used to change between layers
 
 <p align="center">
-  <img src="./Images/Shokey_Layers.gif" alt="Cycling through Shokeys layers" style="display: block; margin: 0 auto;"/>
+  <img src="./assets/Shokey_Layers.gif" alt="Cycling through Shokeys layers" style="display: block; margin: 0 auto;"/>
 </p>
 
 <br>
@@ -183,7 +183,7 @@ Shokey has 4 layers (red, green, blue and white) and the `*` key is used to chan
 The rotary encoder is represented by three variables, `VU` (Volume Up), `VD` (Volume Down) and `E` (Encoder button)
 
 <p align="center">
-  <img src="./Images/Shokey_Encoder.gif" alt="Encoder rotating and clicking function" style="display: block; margin: 0 auto;"/>
+  <img src="./assets/Shokey_Encoder.gif" alt="Encoder rotating and clicking function" style="display: block; margin: 0 auto;"/>
 </p>
 
 <hr style="height: 0.1rem">
