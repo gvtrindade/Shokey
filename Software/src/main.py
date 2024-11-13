@@ -1,56 +1,59 @@
+import json
 import sys
-import time
 import threading
 
-from PyQt5 import QtWidgets, QtGui
+from app.main_window import MainWindow
+from app.tray import Tray
+from PySide6.QtWidgets import QApplication
+from util.communication import Communication
 
-from communication import establish_connection, send_serial_msg
-from key_parse_functions import communication_handler
-from search_ports import find_used_port
-from shortcuts import set_shortcuts
-from sys_tray_app import SystemTrayIcon
-
-COMM_RETRY_TIMEOUT = 0.8
-
-
-def update_communication():
-    used_port = find_used_port()
-    serialcomm = establish_connection(used_port)
-    send_serial_msg(serialcomm, "I")
-
-    shortcuts = {}
-    set_shortcuts(shortcuts)
-
-    while True:
-        try:
-            communication_handler(serialcomm, shortcuts)
-
-        except Exception as e:
-            print(e)
-            find_used_port()
-            if find_used_port():
-                update_communication()
-            time.sleep(COMM_RETRY_TIMEOUT)
-
-
-def comm_loop():
-    while not find_used_port():
-        find_used_port()
-        time.sleep(COMM_RETRY_TIMEOUT)
-
-    update_communication()
+comm = Communication()
+app = None
+main_window = None
+tray = None
 
 
 def main():
-    app = QtWidgets.QApplication(sys.argv)
-    w = QtWidgets.QWidget()
-    tray_icon = SystemTrayIcon(QtGui.QIcon("icon.png"), w)
-    tray_icon.show()
+    print("Starting Shokey")
+    tray.show()
+    tray.action.triggered.connect(main_window.show)
+    tray.quit.triggered.connect(app.quit)
+    main_window.show()
 
-    # threading.Thread(target=comm_loop).start()
+    threading.Thread(target=comm_loop).start()
 
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
+
+
+def comm_loop():
+    comm.search_port()
+
+    print("Found port")
+    used_port = comm.find_used_port()
+    comm.establish_connection(used_port)
+    comm.send_data(json.dumps({"app": "shortcut", "action": "load", "data": ""}))
+    main_window.show_shokey()
+
+    print("Starting communication")
+    while True:
+        try:
+            crude_data = comm.read_data()
+            data = comm.actions.parse_data(crude_data)
+            if isinstance(data, str):
+                comm.shortcuts.execute_shortcut(data)
+            else:
+                comm.actions.execute_action(data)
+        except Exception as e:
+            print(e)
+            main_window.hide_shokey()
+            # TODO restablishing the loop should be done better
+            comm_loop()
 
 
 if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    app.setQuitOnLastWindowClosed(False)
+    main_window = MainWindow()
+    tray = Tray()
+
     main()
