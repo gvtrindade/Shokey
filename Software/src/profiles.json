@@ -1,0 +1,65 @@
+{
+  "default": {
+    "shortcuts": [
+      "key.media_play_pause",
+      "key.a",
+      "txt.Hello World",
+      "key.t",
+      "combo.ctrl+c",
+      "combo.ctrl+v",
+      "txt.Im number 7",
+      "key.p",
+      "key.media_volume_up",
+      "key.media_volume_down",
+      "txt.Im empty",
+      "key.o",
+      "scroll.0,-1",
+      "scroll.0,1"
+    ],
+    "program": "",
+    "name": "Default",
+    "colors": [0, 0, 255]
+  },
+  "new": {
+    "shortcuts": [
+      "key.p",
+      "key.y",
+      "txt.Medium World",
+      "key.t",
+      "combo.ctrl+c",
+      "combo.ctrl+v",
+      "txt.Im number 7",
+      "key.p",
+      "key.media_volume_up",
+      "key.media_volume_down",
+      "txt.Im empty",
+      "key.o",
+      "scroll.0,-1",
+      "scroll.0,1"
+    ],
+    "program": "",
+    "name": "New Profile",
+    "colors": [150, 30, 255]
+  },
+  "old": {
+    "shortcuts": [
+      "key.q",
+      "key.w",
+      "txt.Bye World",
+      "key.t",
+      "combo.ctrl+c",
+      "combo.ctrl+v",
+      "txt.Im number 7",
+      "key.p",
+      "key.media_volume_up",
+      "key.media_volume_down",
+      "txt.Im empty",
+      "key.o",
+      "scroll.0,-1",
+      "scroll.0,1"
+    ],
+    "program": "",
+    "name": "Old Profile",
+    "colors": [255, 30, 255]
+  }
+}
