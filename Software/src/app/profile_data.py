@@ -9,23 +9,25 @@ class ProfileData(QWidget):
         super(ProfileData, self).__init__(parent)
         self.profile = profile
 
-        # self.setGeometry(100, 50, 200, 400)
-        # self.setObjectName("appList")
-        # self.setStyleSheet(
-        #     """
-        #         QWidget#appList {
-        #             border: 3px solid #D9D9D9;
-        #             border-radius: 20px;
-        #         }
-        #     """
-        # )
         self.layout = QVBoxLayout(self)
 
         label = QLabel("Profile Data")
         self.layout.addWidget(label)
 
-        self.title = QLabel(profile["name"])
+        self.title = QLabel(profile.name)
         self.layout.addWidget(self.title)
+
+        self.color_box = QWidget(self)
+        self.color_box.setStyleSheet(f"background-color: #{profile.color}")
+        self.layout.addWidget(self.color_box)
+
+        # self._style_combobox = QComboBox()
+        # init_widget(self._style_combobox, "styleComboBox")
+        # self._style_combobox.addItems(style_names())
+
+        # style_label = QLabel("Style:")
+        # init_widget(style_label, "style_label")
+        # style_label.setBuddy(self._style_combobox)
 
         self.setLayout(self.layout)
 
@@ -44,7 +46,9 @@ class ProfileData(QWidget):
         self.setLayout(self.layout)
 
     def change_profile(self, profile):
-        self.title.setText(profile["name"])
+        self.profile = profile
+        self.title.setText(profile.name)
+        self.color_box.setStyleSheet(f"background-color: #{profile.color}")
 
     @Slot()
     def save_clicked(self):
@@ -56,5 +60,4 @@ class ProfileData(QWidget):
 
     @Slot()
     def cancel_clicked(self):
-        print("Canceling", self.profile)
-        self.cancel.emit(self.profile)
+        self.cancel.emit(True)
