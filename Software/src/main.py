@@ -3,7 +3,7 @@ import sys
 import threading
 
 from app.main_window import MainWindow
-from app.tray import Tray
+from app.sys_tray.tray import Tray
 from PySide6.QtWidgets import QApplication
 from util.communication import Communication
 

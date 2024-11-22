@@ -16,7 +16,7 @@ class Shokey(QWidget):
         return type.upper(), shortcut
 
     def change_profile(self, profile):
-        layout = QGridLayout(self)
+        layout = QGridLayout()
 
         counter = 0
         for row in range(self.rows):

@@ -14,7 +14,7 @@ class Encoder(QWidget):
         return type.upper(), shortcut
 
     def change_profile(self, profile):
-        layout = QVBoxLayout(self)
+        layout = QVBoxLayout()
 
         for code in self.button_codes:
             button = QPushButton()
